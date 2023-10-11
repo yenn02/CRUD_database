@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <form action="" method="POST">
+        {{ form.csrf_token() }}
+        <fieldset class="form-group">
+            <legend>Update Profile</legend>
+
+            <div class="form-group">
+                {{ form.student_name.label(class="formcontrol-label") }}
+                {% if form.student_name.errors %}
+                    {{ form.student_name(class="form-control form-control is-invalid") }}
+                    {% for error in form.student_name.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.student_name(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.credit.label(class="form-control-label") }}
+                {% if form.credit.errors %}
+                    {{ form.credit(class="form-control form-control is-invalid") }}
+                    {% for error in form.credit.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.credit(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

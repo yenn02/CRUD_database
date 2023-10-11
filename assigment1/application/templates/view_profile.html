@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+<div> 
+    {% for enroll in enrollment %}
+        {% for course in courses %}
+            
+         
+                {% if enroll.course_id == course.course_id and student_id == enroll.student_id %}
+                  
+                        
+                            <div class="card p-1 m-3">
+                                <div class="card-body">
+                                    <p class="card-title">{{ course.course_name }}</p>
+                                    <p class="card-text">Course ID: {{ course.course_id}}</p>
+                                    <p class="card-text">GPA: {{ enroll.credit}}</p>
+                                    <a href="{{ url_for('update_credit', id = enroll._id) }}" class="btn btn-outline-danger btn-sm">Update Credit</a>
+                                    <a href="{{ url_for('delete_course', id = enroll._id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        
+                   
+                {% endif %}
+           
+            
+        {%endfor%}  
+    {% endfor %}
+</div>
+
+ <div> 
+    {% for student in students %}
+        {% if student_id == student.student_id %}
+        <h5 class="mb-3">Student Profile</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><b>Name:</b> </h6>
+                        
+                        <p class="card-title">{{ student.student_name }}</p>
+                        <h6><b>ID:</b> </h6>
+                        <p class="card-text">{{ student.student_id}}</p>
+                        <h6><b>Current_credit:</b> </h6>
+                        <p class="card-text">{{ student.total_credit}}</p>
+                        <a href="{{ url_for('update_profile', id = student._id) }}" class="btn btn-info btn-sm">Update</a>
+                    </div>
+                        
+                    </div>
+                </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

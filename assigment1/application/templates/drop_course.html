@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+ <div> 
+    {% for enroll in enrollment %}
+        {% for course in courses %}
+            
+         
+                {% if enroll.course_id == course.course_id and student_id == enroll.student_id %}
+                    {% for person in instructor %}
+                        {% if person.ins_id == course.ins_id %} 
+                            <div class="card p-1 m-3">
+                                <div class="card-body">
+                                    <p class="card-title">{{ course.course_name }}</p>
+                                    <p class="card-text">Course ID: {{ course.course_id}}</p>
+                                    <p class="card-text" style="text-size-adjust: 10p;">Intructor: {{ person.ins_name}}</p>
+                                    <p class="card-text" style="text-size-adjust: 10p;">Instructor ID: {{ person.ins_id}}</p>
+                                    <a href="{{ url_for('delete_course', id = enroll._id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+           
+            
+        {%endfor%}  
+    {% endfor %}
+</div>
+{% endblock %}
